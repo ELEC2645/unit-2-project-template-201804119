@@ -8,6 +8,7 @@
 #include <math.h>
 #include "funcs.h"
 
+
 /* Prototypes mirroring the C++ version */
 static void main_menu(void);            /* runs in the main loop */
 static void print_main_menu(void);      /* output the main menu description */
@@ -37,7 +38,7 @@ static void main_menu(void)
 
 static int get_user_input(void)
 {
-    enum { MENU_ITEMS = 5 };   /* 1..4 = items, 5 = Exit */
+    enum { MENU_ITEMS = 8 };   /* 1..7 = items, 8 = Exit */
     char buf[128];
     int valid_input = 0;
     int value = 0;
@@ -74,19 +75,31 @@ static void select_menu_item(int input)
 {
     switch (input) {
         case 1:
-            menu_item_1();
+            menu_item_1();   // Set parameters
             go_back_to_main();
             break;
         case 2:
-            menu_item_2();
+            menu_item_2();   // Step response
             go_back_to_main();
             break;
         case 3:
-            menu_item_3();
+            menu_item_3();   // Discharge
             go_back_to_main();
             break;
         case 4:
-            menu_item_4();
+            menu_item_4();   // Export CSV
+            go_back_to_main();
+            break;
+        case 5:
+            menu_item_5();   // Analyse tau
+            go_back_to_main();
+            break;
+        case 6:
+            menu_item_6();   // Frequency response
+            go_back_to_main();
+            break;
+        case 7:
+            menu_item_7();   // Change simulation settings
             go_back_to_main();
             break;
         default:
@@ -97,15 +110,16 @@ static void select_menu_item(int input)
 
 static void print_main_menu(void)
 {
-    printf("\n----------- Main menu -----------\n");
+     printf("\n----------- RC Circuit Simulator -----------\n");
     printf("\n"
-           "\t\t\t\t\t\t\n"
-           "\t1. Menu item 1\t\t\n"
-           "\t2. Menu item 2\t\t\n"
-           "\t3. Menu item 3\t\t\n"
-           "\t4. Menu item 4\t\t\n"
-           "\t5. Exit\t\t\t\t\n"
-           "\t\t\t\t\t\t\n");
+           "\t1. Set circuit parameters (R, C, Vin)\n"
+           "\t2. Simulate step response (0 → Vin)\n"
+           "\t3. Simulate discharge response (V0 → 0)\n"
+           "\t4. Export step/discharge data to CSV\n"
+           "\t5. Analyse time constant τ\n"
+           "\t6. Frequency response at a given frequency\n"
+           "\t7. Change simulation settings (t_max, dt)\n"
+           "\t8. Exit\n");
     printf("---------------------------------------------\n");
 }
 
